@@ -1,17 +1,24 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 
-import logo from '../assets/logo.svg'
-import './Login.css'
+import logo from '../assets/logo.svg';
+import './Login.css';
+
+import api from '../services/api';
 
 function Login({ history }) {
     const [ username, setUsername] = useState('')
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(username)
+        const response = await api.post('/devs', {
+            username,
+        })
+        console.log(response)
 
-        history.push('/main')
+        const {_id} = response.data;
+
+        history.push(`/dev/${_id}`);
     }
 
     return(
