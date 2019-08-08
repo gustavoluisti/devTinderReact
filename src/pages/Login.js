@@ -3,13 +3,15 @@ import React, {useState} from 'react'
 import logo from '../assets/logo.svg'
 import './Login.css'
 
-function Login() {
+function Login({ history }) {
     const [ username, setUsername] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         console.log(username)
+
+        history.push('/main')
     }
 
     return(
